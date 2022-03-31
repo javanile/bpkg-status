@@ -1,3 +1,4 @@
+#!make
 
 build:
 	@bash build.sh
