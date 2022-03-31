@@ -15,6 +15,6 @@ jobs:
           - 1.0.0
       fail-fast: false
     steps:
-      - run: apt-get update && apt-get install -y curl git
+      - run: sudo apt-get update && sudo apt-get install -y curl git
       - run: curl -Lo- "https://raw.githubusercontent.com/bpkg/bpkg/${{ matrix.version }}/setup.sh" | bash
       - run: test "$(bpkg --version)" = "${{ matrix.version }}"
