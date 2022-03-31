@@ -10,10 +10,11 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        version: ${{ fromJson('version.json') }}
+        version:
+          - 1.0.1
+          - 1.0.0
       fail-fast: false
     steps:
-      - uses: actions/checkout@v2
-      - run: sudo apt-get install -y ${{ matrix.shells.package }}
-      - run: sudo ${{ matrix.shells.shell }} ./shellspec --task fixture:stat:prepare
-      - run: SH="${{ matrix.shells.shell }}" contrib/various_test.sh
+      - run: apt-get update && apt-get install -y curl git
+      - run: curl -Lo- "https://raw.githubusercontent.com/bpkg/bpkg/${{ matrix.version }}/setup.sh" | bash
+      - run: test "$(bpkg --version)" = "${{ matrix.version }}"
