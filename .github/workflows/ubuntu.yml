@@ -9,7 +9,8 @@ jobs:
   ubuntu-bionic:
     runs-on: ubuntu-18.04
     strategy:
-      matrix: ${{ fromJson('version.json') }}
+      matrix:
+        version: ${{ fromJson('version.json') }}
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
