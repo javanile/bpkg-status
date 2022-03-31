@@ -10,12 +10,16 @@ while IFS= read line || [[ -n "${line}" ]]; do
   [[ "${line::1}" == "#" ]] && continue
 
   name=$(echo $line | cut -d'#' -f1 | xargs)
+  title=$(echo $line | cut -d'#' -f2 | xargs)
+  platform=$(echo $line | cut -d'#' -f3 | xargs)
+  image=$(echo $line | cut -d'#' -f4 | xargs)
+  bootstrap=$(echo $line | cut -d'#' -f5 | xargs)
 
-  sed -e 's!%%VT_VERSION%%!'"${version}"'!' \
-          -e 's!%%VT_DOWNLOAD%%!'"${download}"'!' \
-          -e 's!%%VT_DIRECTORY%%!'"${directory}"'!' \
-          -e 's!%%DATABASE_PACKAGE%%!'"${database_package}"'!' \
-          -e 's!%%PHP_VERSION%%!'"${php_version}"'!' \
-          -r Environment.template.yml > ".github/workflows/${name}.yml"
+  sed -e 's!%name%!'"${name}"'!' \
+      -e 's!%title%!'"${title}"'!' \
+      -e 's!%platform%!'"${platform}"'!' \
+      -e 's!%image%!'"${image}"'!' \
+      -e 's!%bootstrap%!'"${bootstrap}"'!' \
+      -r Environment.template.yml > ".github/workflows/${name}.yml"
 
 done < "Environment"

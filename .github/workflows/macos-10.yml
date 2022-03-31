@@ -1,4 +1,4 @@
-name: %title%
+name: macOS Catalina
 
 on: [push]
 
@@ -7,8 +7,8 @@ env:
 
 jobs:
   setup:
-    runs-on: %platform%
-    %image%
+    runs-on: macos-10.15
+    
 
     strategy:
       matrix:
@@ -17,6 +17,6 @@ jobs:
           - 1.0.0
       fail-fast: false
     steps:
-      - run: %bootstrap%
+      - run: ls
       - run: curl -Lo- "https://raw.githubusercontent.com/bpkg/bpkg/${{ matrix.version }}/setup.sh" | bash
       - run: test "$(bpkg --version)" = "${{ matrix.version }}"
