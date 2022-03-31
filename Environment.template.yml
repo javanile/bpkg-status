@@ -1,0 +1,20 @@
+name: Ubuntu Bionic Beaver
+
+on: [push, pull_request]
+
+env:
+  FORCE_COLOR: 1
+
+jobs:
+  ubuntu-bionic:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        version:
+          - 1.0.1
+          - 1.0.0
+      fail-fast: false
+    steps:
+      - run: sudo apt-get update && sudo apt-get install -y curl git
+      - run: curl -Lo- "https://raw.githubusercontent.com/bpkg/bpkg/${{ matrix.version }}/setup.sh" | bash
+      - run: test "$(bpkg --version)" = "${{ matrix.version }}"
