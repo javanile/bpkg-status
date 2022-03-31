@@ -1,4 +1,4 @@
-name: Ubuntu Bionic Beaver
+name: %title%
 
 on: [push, pull_request]
 
@@ -6,8 +6,8 @@ env:
   FORCE_COLOR: 1
 
 jobs:
-  ubuntu-bionic:
-    runs-on: ubuntu-18.04
+  setup:
+    runs-on: %platform%
     strategy:
       matrix:
         version:
