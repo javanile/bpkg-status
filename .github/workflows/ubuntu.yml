@@ -8,18 +8,8 @@ env:
 jobs:
   ubuntu-bionic:
     runs-on: ubuntu-18.04
-    if: "!contains(github.event.head_commit.message, 'ci skip')"
     strategy:
-      matrix:
-        shells:
-          - {shell: dash,        package: dash}
-          - {shell: bash,        package: bash}
-          - {shell: busybox ash, package: busybox}
-          - {shell: ksh,         package: ksh}
-          - {shell: mksh,        package: mksh}
-          - {shell: posh,        package: posh}
-          - {shell: yash,        package: yash}
-          - {shell: zsh,         package: zsh}
+      matrix: ${{ fromJson('version.json') }}
       fail-fast: false
     steps:
       - uses: actions/checkout@v2

@@ -1,4 +1,4 @@
 
 
 test-ubuntu:
-	act push
+	@act
