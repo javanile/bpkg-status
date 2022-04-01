@@ -16,6 +16,9 @@ jobs:
           - 1.0.1
       fail-fast: false
     steps:
+      - run: export CAVALLO=10
+      - run: echo $CAVALLO
+      - run: echo $HOME
       - run: echo $SHELL
       - run: echo $PATH
       - run: ls -la
