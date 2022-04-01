@@ -14,9 +14,8 @@ jobs:
       matrix:
         version:
           - 1.0.1
-          - 1.0.0
       fail-fast: false
     steps:
-      - run: ls
+      - run: echo $SHELL
       - run: curl -Lo- "https://raw.githubusercontent.com/bpkg/bpkg/${{ matrix.version }}/setup.sh" | bash
       - run: test "$(bpkg --version)" = "${{ matrix.version }}"

@@ -3,7 +3,7 @@
 build:
 	@bash build.sh
 
-push: build
+push:
 	git add .
 	git commit -am "Release"
 	git push
