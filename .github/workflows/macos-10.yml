@@ -16,7 +16,7 @@ jobs:
           - 1.0.1
       fail-fast: false
     steps:
-      - run: echo "export CAVALLO=10" > $HOME/.bashrc
+      - run: echo "${HOME}/.local/bin" >> $GITHUB_PATH
       - run: echo $CAVALLO
       - run: echo $SHELL
       - run: echo $PATH
