@@ -17,5 +17,7 @@ jobs:
       fail-fast: false
     steps:
       - run: echo $SHELL
+      - run: echo $PATH
+      - run: ls -la
       - run: curl -Lo- "https://raw.githubusercontent.com/bpkg/bpkg/${{ matrix.version }}/setup.sh" | bash
       - run: test "$(bpkg --version)" = "${{ matrix.version }}"
