@@ -18,8 +18,7 @@ jobs:
       fail-fast: false
     steps:
       - run: echo "C:\\msys64\\usr\\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-      - run: set
-      - run: "dir env:"
+      - run: "gci env:* | select Name,Value"
       - run: curl -Lo- "https://raw.githubusercontent.com/bpkg/bpkg/${{ matrix.version }}/setup.sh" | bash
       - run: test "$(bpkg --version)" = "${{ matrix.version }}"
 
