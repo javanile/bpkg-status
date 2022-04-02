@@ -1,4 +1,4 @@
-name: macOS Catalina
+name: Windows MSYS
 
 on: [push]
 
@@ -7,19 +7,16 @@ env:
 
 jobs:
   setup:
-    runs-on: macos-10.15
+    runs-on: windows-latest
     
 
     strategy:
       matrix:
         version:
           - 1.0.1
+          - 1.0.0
       fail-fast: false
     steps:
-      - run: echo "${HOME}/.local/bin" >> $GITHUB_PATH
-      - run: echo $CAVALLO
-      - run: echo $SHELL
-      - run: echo $PATH
-      - run: ls -la
+      - run: pacman.exe -S --noprogressbar --noconfirm
       - run: curl -Lo- "https://raw.githubusercontent.com/bpkg/bpkg/${{ matrix.version }}/setup.sh" | bash
       - run: test "$(bpkg --version)" = "${{ matrix.version }}"
