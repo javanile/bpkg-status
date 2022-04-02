@@ -7,5 +7,5 @@
 ##------------###----------------###----------------###-------------###------------------------------------------------------------------##
 #    ubuntu    #      Ubuntu      #      ubuntu      #               #      sudo apt-get update && sudo apt-get install -y curl git
 #   macos-10   #  macOS Catalina  #    macos-10.15   #               #             echo "${HOME}/.local/bin" >> $GITHUB_PATH
-  windows-msys #   Windows MSYS   #  windows-latest  #               #    echo "C:\\msys64\\usr\\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append; pacman.exe -S --noprogressbar --noconfirm
+  windows-msys #   Windows MSYS   #  windows-latest  #               #  "C:\\msys64\\usr\\bin;C:\\Program Files\\Git\\bin" >> $env:GITHUB_PATH; pacman.exe -Syu --noprogressbar --noconfirm; pacman.exe -S --noprogressbar --noconfirm bash
 ##------------###----------------###----------------###-------------###------------------------------------------------------------------##
